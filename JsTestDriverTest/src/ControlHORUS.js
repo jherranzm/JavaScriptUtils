@@ -2,17 +2,32 @@
  * 
  */
 
+
+String.prototype.trim = function() {
+	return this.replace(/^\s+|\s+$/g,"");
+}
+
+String.prototype.ltrim = function() {
+	return this.replace(/^\s+/,"");
+}
+
+String.prototype.rtrim = function() {
+	return this.replace(/\s+$/,"");
+}
+
 myapp = {};
 
-myapp.Greeter = function() { };
+myapp.ControlHORUS = function() { };
 
-myapp.Greeter.prototype.greet = function(name) {
+myapp.ControlHORUS.prototype.greet = function(name) {
   return "Hello " + name + "!";
 };
 
-myapp.Greeter.prototype.validaHORUS = function(codigo) {
+myapp.ControlHORUS.prototype.validaHORUS = function(codigo) {
+	
 	
 	if(codigo == null || codigo == "") return false;
+	codigo = codigo.trim();
 	if(codigo.length != 7) return false;
 	
 	// El primer caracter ha de ser una letra
@@ -22,6 +37,7 @@ myapp.Greeter.prototype.validaHORUS = function(codigo) {
 	
 	for(var k = 1; k < codigo.length; k++){
 		//alert(codigo + " : " + k + ":" + codigo[k] + ":" + isNaN(codigo[k]));
+		if(codigo[k] == " ") return false;
 		if(isNaN(codigo[k])){
 			return false;
 		}
